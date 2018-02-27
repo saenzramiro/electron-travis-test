@@ -58,7 +58,7 @@ deploy:
     - "build/*"
   skip_cleanup: true
   overwrite: true
-  prerelease: true
+  draft: true
   on:
     repo: saenzramiro/electron-travis-test
     tags: true
