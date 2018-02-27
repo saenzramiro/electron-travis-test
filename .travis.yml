@@ -9,6 +9,7 @@ matrix:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
+      sudo: required
       services: docker
       language: generic
 
@@ -56,6 +57,8 @@ deploy:
     - "build/*"
   skip_cleanup: true
   overwrite: true
-  draft: true
+  prerelease: true
   on:
+    repo: saenzramiro/electron-travis-test
     tags: true
+    all_branches: true
