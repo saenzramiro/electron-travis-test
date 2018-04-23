@@ -42,35 +42,35 @@
     },
     "mac": {
       "icon": "build/icons/icon.icns",
-	  "category": "public.app-category.productivity",
-		"target": [
-			"default"
-		]
+      "category": "public.app-category.productivity",
+      "target": [
+        "default"
+      ]
     },
     "win": {
       "icon": "build/icons/icon.ico",
-	  "target": [
-			"nsis",
-			"portable",
-			"zip"
-		]
+      "target": [
+        "nsis",
+        "portable",
+        "zip"
+      ]
     },
     "linux": {
       "icon": "build/icons",
-	  "category": "Office",
-		"desktop": {
-			"Terminal": "false",
-			"Type": "Application",
-			"Categories": "GTK;GNOME;Utility;Office;Email;Chat;InstantMessaging;"
-		},
-		"target": [
-			"AppImage",
-			"snap",
-			"deb",
-			"rpm",
-			"zip",
-			"tar.gz"
-		]
+      "category": "Office",
+      "desktop": {
+        "Terminal": "false",
+        "Type": "Application",
+        "Categories": "GTK;GNOME;Utility;Office;Email;Chat;InstantMessaging;"
+      },
+      "target": [
+        "AppImage",
+        "snap",
+        "deb",
+        "rpm",
+        "zip",
+        "tar.gz"
+      ]
     }
   },
   "dependencies": {
@@ -94,10 +94,10 @@
     "css-loader": "^0.28.4",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^1.7.5",
+    "electron": "^1.8.4",
+    "electron-builder": "^19.19.1",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
-    "electron-builder": "^19.19.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
