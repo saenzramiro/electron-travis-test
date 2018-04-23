@@ -3,6 +3,10 @@
     <div class="title">Information</div>
     <div class="items">
       <div class="item">
+        <div class="name">Version:</div>
+        <div class="value">{{ version }}</div>
+      </div>
+      <div class="item">
         <div class="name">Vue.js:</div>
         <div class="value">{{ vue }}</div>
       </div>
@@ -26,6 +30,7 @@
   export default {
     data () {
       return {
+        version: require('electron').remote.app.getVersion(),
         electron: process.versions['atom-shell'],
         node: process.versions.node,
         platform: require('os').platform(),
