@@ -25,11 +25,6 @@
     "files": [
       "dist/electron/**/*"
     ],
-    "publish": {
-      "provider": "github",
-      "repo": "saenzramiro/electron-travis-test",
-      "releaseType": "draft"
-    },
     "dmg": {
       "contents": [
         {
