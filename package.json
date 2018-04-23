@@ -1,6 +1,6 @@
 {
   "name": "electron-travis-test",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "Ramiro Saenz <saenzramiro@gmail.com>",
   "description": "An electron-vue project",
   "license": null,
