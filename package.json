@@ -22,6 +22,11 @@
     "directories": {
       "output": "build"
     },
+    "publish": {
+      "provider": "github",
+	  "owner": "saenzramiro",
+	  "repo": "electron-travis-test"
+    },
     "files": [
       "dist/electron/**/*"
     ],

@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, dialog } from 'electron'
+import { autoUpdater } from 'electron-updater'
 
 /**
 * Set `__static` path to static files in production
@@ -29,7 +30,9 @@ function createWindow () {
 		mainWindow = null
 	})
 
-	if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdatesAndNotify()
+	autoUpdater.autoDownload = true;
+
+	if (process.env.NODE_ENV !== 'development') autoUpdater.checkForUpdatesAndNotify()
 }
 
 app.on('ready', createWindow)
@@ -53,8 +56,40 @@ app.on('activate', () => {
 * support auto updating. Code Signing with a valid certificate is required.
 * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
 */
-import { autoUpdater } from 'electron-updater'
+/*
+autoUpdater.on('checking-for-update', () => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: '',
+		message: 'Checking updates...',
+		buttons: ['Sure', 'No']
+	}, (buttonIndex) => {
 
+	})
+})
+
+autoUpdater.on('update-available', () => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: '',
+		message: 'Downloading update...',
+		buttons: ['Sure', 'No']
+	}, (buttonIndex) => {
+		autoUpdater.checkForUpdates();
+	})
+})
+
+autoUpdater.on('update-not-available', () => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: '',
+		message: 'NO UPDATE',
+		buttons: ['Sure', 'No']
+	}, (buttonIndex) => {
+
+	})
+})
+*/
 autoUpdater.on('update-downloaded', () => {
 	autoUpdater.quitAndInstall()
 })
