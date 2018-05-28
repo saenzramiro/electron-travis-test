@@ -3,26 +3,12 @@
     <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
     <main>
       <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
         <system-information></system-information>
       </div>
 
       <div class="right-side">
         <div class="doc">
-          <div class="title">Getting Started</div>
-          <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
-        </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
+          <p class="status"></p>
         </div>
       </div>
     </main>
@@ -31,6 +17,23 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  import { ipcRenderer } from 'electron'
+
+  ipcRenderer.on('autoUpdater:checking-for-update', (event, arg) => {
+  	document.getElementsByClassName('status')[0].innerHTML = 'Checking for update...';
+  })
+  ipcRenderer.on('autoUpdater:update-downloaded', (event, arg) => {
+  	document.getElementsByClassName('status')[0].innerHTML = 'Update downloaded';
+  })
+  ipcRenderer.on('autoUpdater:update-available', (event, arg) => {
+  	document.getElementsByClassName('status')[0].innerHTML = 'Update available';
+  })
+  ipcRenderer.on('autoUpdater:update-not-available', (event, arg) => {
+  	document.getElementsByClassName('status')[0].innerHTML = 'Update not available';
+  })
+  ipcRenderer.on('autoUpdater:error', (event, arg) => {
+  	document.getElementsByClassName('status')[0].innerHTML = 'Update Error';
+  })
 
   export default {
     name: 'landing-page',
