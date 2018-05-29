@@ -8,7 +8,7 @@
 
       <div class="right-side">
         <div class="doc">
-          <p class="status"></p>
+          <p class="status">Ready</p>
         </div>
       </div>
     </main>

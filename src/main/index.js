@@ -1,6 +1,6 @@
 import { app, BrowserWindow, dialog } from 'electron'
 // AutoUpdater
-import updater from './updater'
+import * as updater from './updater'
 import { autoUpdater } from 'electron-updater'
 
 /**
@@ -32,9 +32,8 @@ function createWindow () {
 		mainWindow = null
 	})
 
-	autoUpdater.autoDownload = true;
-
-	if (process.env.NODE_ENV !== 'development') autoUpdater.checkForUpdatesAndNotify()
+	// Initialize autoUpdater
+	if ( process.env.NODE_ENV === 'production' ) updater.initialize(mainWindow);
 }
 
 app.on('ready', createWindow)
@@ -58,7 +57,7 @@ app.on('activate', () => {
 * support auto updating. Code Signing with a valid certificate is required.
 * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
 */
-
+/*
 autoUpdater.on('checking-for-update', () => {
 	dialog.showMessageBox({
 		type: 'info',
@@ -95,3 +94,4 @@ autoUpdater.on('update-not-available', () => {
 autoUpdater.on('update-downloaded', () => {
 	autoUpdater.quitAndInstall()
 })
+*/
