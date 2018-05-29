@@ -17,23 +17,6 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
-  import { ipcRenderer } from 'electron'
-
-  ipcRenderer.on('autoUpdater:checking-for-update', (event, arg) => {
-  	document.getElementsByClassName('status')[0].innerHTML = 'Checking for update...';
-  })
-  ipcRenderer.on('autoUpdater:update-downloaded', (event, arg) => {
-  	document.getElementsByClassName('status')[0].innerHTML = 'Update downloaded';
-  })
-  ipcRenderer.on('autoUpdater:update-available', (event, arg) => {
-  	document.getElementsByClassName('status')[0].innerHTML = 'Update available';
-  })
-  ipcRenderer.on('autoUpdater:update-not-available', (event, arg) => {
-  	document.getElementsByClassName('status')[0].innerHTML = 'Update not available';
-  })
-  ipcRenderer.on('autoUpdater:error', (event, arg) => {
-  	document.getElementsByClassName('status')[0].innerHTML = 'Update Error';
-  })
 
   export default {
     name: 'landing-page',
