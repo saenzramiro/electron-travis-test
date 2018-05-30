@@ -31,7 +31,7 @@ before_install:
 
 before_script:
   - git lfs pull
-  - git clone https://$GH_TOKEN@github.com/ramboxapp/test.git
+  - git clone https://$GH_TOKEN@github.com/ramboxapp/test.git .
 
 script:
   - |
