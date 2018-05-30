@@ -5,7 +5,7 @@ matrix:
     - os: osx
       osx_image: xcode9.3
       language: node_js
-      node_js: "8"
+      node_js: "9"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -21,6 +21,8 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - libgnome-keyring-dev
+      - icnsutils
       - g++-4.8
 
 cache:
