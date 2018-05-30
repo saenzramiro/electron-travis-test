@@ -1,0 +1,70 @@
+sudo: required
+dist: trusty
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9.3
+      language: node_js
+      node_js: "9"
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+    - os: linux
+      services: docker
+      language: generic
+
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+
+before_install:
+  - |
+    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
+      export PATH="/tmp/git-lfs:$PATH"
+      curl -o- -L https://yarnpkg.com/install.sh | bash
+      export PATH="$HOME/.yarn/bin:$PATH"
+    fi
+
+before_script:
+  - git lfs pull
+  - git clone https://saenzramiro:1152f5c7a84993272f92e850fc7519932ac457a2@github.com/ramboxapp/test.git
+
+script:
+  - |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      docker run --rm \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+        -v ${PWD}:/project \
+        -v ~/.cache/electron:/root/.cache/electron \
+        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+        electronuserland/builder:wine \
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn run build --linux --win"
+    else
+      yarn run build
+    fi
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
+
+branches:
+  only:
+  - master
+
+deploy:
+  provider: releases
+  api_key:
+    secure: F7z4j9xzhpVyfovrf33jbVdW9dwgpIgbn85dxe8y/kZbQ9sAVU8LzoBZ3PlfeXmoV5CnSUa5j/fe8BmPKiG31kgAH7cktsCOgyOLggO1Sy+vnx7RQwwE/jzb7PzEqI2BP6TG/eOfylBxGBInWeaoSRfK3IRAvLHvvxY1eL4Wq/KRaanzMvh+JdCaStIKJSnI/rc9noI7vtOtgHot+F162s1G1k5/UcdbsfXWzotMVsonhlGgB/Jz9srnJpMpxYxaknR8UFPVRzOM5UzzMo64hXRUDnCFlYcTHcSAkvgKHI0SIPIS3kOdvgrYGavPLK2CAteQk7Dy1lHnEixmKPxG7eVAFwleUo8ePR82WXFkv5gacCvcrGrRLQ9nC/ygeMVgC5XxcHq3ykkcrstu5yjC1yEYFs23gA1Z4DIctwq1diyO72/FNxghV5ckN5WtJQs1QTT+Ec2NjLrWgFYuaEHYgAGopzTPN8gT9fyIv/lAq1S/l4P/z3EDS42UL+UTM77gyXSYShCKneDnFC34ATlYNDhJFRzLZ6qJG5UlOwrfXxUYeGUpQZlV41jg+VFWmPDAeQTMjGP5fRA3w1hFobBotBVyrtbcovTb4TFVTKJWOC/0wyiwku7YTY/nqMU/hR4IluTyRh9Z4NMn5xT5UW63OZd4DJvE573JxmJmnPc0fbo=
+  file_glob: true
+  file:
+    - "build/*"
+    - "build/mac/*"
+  skip_cleanup: true
+  overwrite: true
+  draft: true
+  on:
+    repo: saenzramiro/electron-travis-test
+    tags: true
+    all_branches: true
