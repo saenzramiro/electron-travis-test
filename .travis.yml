@@ -43,6 +43,7 @@ before_install:
 before_script:
   - git lfs pull
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
+  - pyenv shell "2.7.10"
 
 script:
   - cd desktop
