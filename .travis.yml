@@ -35,6 +35,7 @@ before_script:
 
 script:
   - cd test
+  - yarn install
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
