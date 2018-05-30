@@ -31,10 +31,10 @@ before_install:
 
 before_script:
   - git lfs pull
-  - git clone https://$GH_TOKEN@github.com/ramboxapp/test.git
+  - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
 
 script:
-  - cd test
+  - cd desktop
   - yarn install
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -62,7 +62,6 @@ deploy:
   file_glob: true
   file:
     - "build/*"
-    - "build/mac/*"
   skip_cleanup: true
   overwrite: true
   draft: true
