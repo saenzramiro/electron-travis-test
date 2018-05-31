@@ -16,6 +16,7 @@ addons:
     packages:
       - libgnome-keyring-dev
       - icnsutils
+      - python2.7
 
 cache:
   directories:
@@ -37,7 +38,6 @@ before_install:
   - cd desktop
   - rm -rf /Users/travis/.nvm/versions/node/v8.11.2/lib/node_modules/npm/node_modules/node-gyp
   - yarn global add node-gyp
-  - brew install python@2
   - yarn add node-pre-gyp
 
 before_script:
