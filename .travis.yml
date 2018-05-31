@@ -34,6 +34,7 @@ before_install:
     fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
+  - yarn global add node-gyp
 
 before_script:
   - git lfs pull
