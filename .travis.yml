@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 dist: trusty
 language: c
 matrix:
@@ -10,10 +10,14 @@ matrix:
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - CXX=g++
 
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
+      - g++-4.8
       - libgnome-keyring-dev
       - icnsutils
       - python2.7
@@ -34,10 +38,10 @@ before_install:
       export PATH="$HOME/.yarn/bin:$PATH"
       brew update
     fi
-  - python -V
   - npm update -g node-gyp
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
+  - rm yarn.lock
 
 before_script:
   - git lfs pull
