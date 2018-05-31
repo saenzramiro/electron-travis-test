@@ -1,9 +1,10 @@
 sudo: required
 dist: trusty
+language: c
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.3
+      osx_image: xcode8.3
       language: node_js
       node_js: "8"
       env:
@@ -19,8 +20,8 @@ addons:
 cache:
   directories:
   - node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
+  - "$HOME/.electron"
+  - "$HOME/.cache"
   yarn: true
 
 before_install:
