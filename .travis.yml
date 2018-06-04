@@ -3,14 +3,6 @@ dist: trusty
 language: c
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9.3
-      language: node_js
-      node_js: "9"
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-        - CXX=g++
     - os: linux
       services: docker
       language: generic
