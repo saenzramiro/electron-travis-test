@@ -38,6 +38,8 @@ script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       rm -rf node_modules
+      node -v
+      nvm -v
       npm i cfonts
       npm i envkey-webpack-plugin
       docker run --rm \
