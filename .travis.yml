@@ -34,8 +34,10 @@ before_script:
   - git lfs pull
 
 script:
+  - pwd
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      rm -rf node_modules
       npm i cfonts
       npm i envkey-webpack-plugin
       docker run --rm \
