@@ -51,8 +51,8 @@ script:
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine-02.17 \
-        /bin/bash -c "node -v && npm install && npm run build --linux --win"
+        electronuserland/builder:wine \
+        /bin/bash -c "wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash && export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm install 8.9.11 && nvm use 8.9.11 && node -v && npm install && npm run build --linux --win"
     else
       npm install
       npm run build
