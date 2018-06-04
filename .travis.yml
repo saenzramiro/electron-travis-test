@@ -10,6 +10,7 @@ matrix:
 addons:
   apt:
     packages:
+      - build-essential
       - libxkbfile-dev
 
 cache:
@@ -34,7 +35,6 @@ before_script:
   - git lfs pull
 
 script:
-  - pwd
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       rm -rf node_modules
@@ -52,7 +52,7 @@ script:
       npm run build
     fi
 before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+  #- rm -rf $HOME/.cache/electron-builder/wine
 
 branches:
   only:
