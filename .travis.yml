@@ -37,26 +37,12 @@ before_install:
   - cd desktop
   - rm yarn.lock
 
-install: true
-
 before_script:
   - git lfs pull
 
 script:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      rm -rf node_modules
-      docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_|ENVKEY|GOOGLE_|WIN_') \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine-03.18 \
-        /bin/bash -c "apt-get install -y libx11-dev && npm install && npm run build --linux --win"
-    else
-      npm install
-      npm run build
-    fi
+  - npm run build
+
 before_cache:
   #- rm -rf $HOME/.cache/electron-builder/wine
 
@@ -70,7 +56,7 @@ deploy:
     secure: F7z4j9xzhpVyfovrf33jbVdW9dwgpIgbn85dxe8y/kZbQ9sAVU8LzoBZ3PlfeXmoV5CnSUa5j/fe8BmPKiG31kgAH7cktsCOgyOLggO1Sy+vnx7RQwwE/jzb7PzEqI2BP6TG/eOfylBxGBInWeaoSRfK3IRAvLHvvxY1eL4Wq/KRaanzMvh+JdCaStIKJSnI/rc9noI7vtOtgHot+F162s1G1k5/UcdbsfXWzotMVsonhlGgB/Jz9srnJpMpxYxaknR8UFPVRzOM5UzzMo64hXRUDnCFlYcTHcSAkvgKHI0SIPIS3kOdvgrYGavPLK2CAteQk7Dy1lHnEixmKPxG7eVAFwleUo8ePR82WXFkv5gacCvcrGrRLQ9nC/ygeMVgC5XxcHq3ykkcrstu5yjC1yEYFs23gA1Z4DIctwq1diyO72/FNxghV5ckN5WtJQs1QTT+Ec2NjLrWgFYuaEHYgAGopzTPN8gT9fyIv/lAq1S/l4P/z3EDS42UL+UTM77gyXSYShCKneDnFC34ATlYNDhJFRzLZ6qJG5UlOwrfXxUYeGUpQZlV41jg+VFWmPDAeQTMjGP5fRA3w1hFobBotBVyrtbcovTb4TFVTKJWOC/0wyiwku7YTY/nqMU/hR4IluTyRh9Z4NMn5xT5UW63OZd4DJvE573JxmJmnPc0fbo=
   file_glob: true
   file:
-    - "build/*"
+    - "artifacts/*"
   skip_cleanup: true
   overwrite: true
   draft: true
