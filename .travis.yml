@@ -17,12 +17,20 @@ matrix:
 
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - ppa:snappy-dev/tools
     packages:
       - libgnome-keyring-dev
       - icnsutils
       - build-essential
       - libxkbfile-dev
+      - libxml2-dev
+      - libappindicator1
       - snapd
+      - rpm
+      - snappy-tools
+      - snapcraft
 
 cache:
   directories:
@@ -45,7 +53,6 @@ install:
 
 before_script:
   - git lfs pull
-  - sudo snap install snapcraft --edge --classic
 
 script:
   - npm run build
