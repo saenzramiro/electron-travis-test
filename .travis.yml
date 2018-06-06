@@ -35,16 +35,16 @@ before_install:
     fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
-  - rm yarn.lock
+  # rm yarn.lock
 
 install:
-  - npm install
+  - yarn install
 
 before_script:
   - git lfs pull
 
 script:
-  - npm run build
+  - yarn run build
 
 before_cache:
   #- rm -rf $HOME/.cache/electron-builder/wine
