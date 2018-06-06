@@ -12,12 +12,14 @@ matrix:
 #        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 #        - CXX=g++
     - os: linux
-      services: docker
-      language: generic
+      env: CC=clang CXX=clang++ npm_config_clang=1
+      compiler: clang
 
 addons:
   apt:
     packages:
+      - libgnome-keyring-dev
+      - icnsutils
       - build-essential
       - libxkbfile-dev
 
@@ -35,16 +37,16 @@ before_install:
     fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
-  # rm yarn.lock
+  - rm yarn.lock
 
 install:
-  - yarn install
+  - npm install
 
 before_script:
   - git lfs pull
 
 script:
-  - yarn run build
+  - npm run build
 
 before_cache:
   #- rm -rf $HOME/.cache/electron-builder/wine
