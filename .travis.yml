@@ -45,6 +45,7 @@ install:
 
 before_script:
   - git lfs pull
+  - sudo snap install snapcraft --edge --classic
 
 script:
   - npm run build
