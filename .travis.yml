@@ -37,6 +37,9 @@ before_install:
   - cd desktop
   - rm yarn.lock
 
+install:
+  - npm install
+
 before_script:
   - git lfs pull
 
