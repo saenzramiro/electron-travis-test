@@ -22,6 +22,7 @@ addons:
       - icnsutils
       - build-essential
       - libxkbfile-dev
+      - snapd
 
 cache:
   directories:
