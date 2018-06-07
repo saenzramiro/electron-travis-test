@@ -23,8 +23,10 @@ addons:
       - libgnome-keyring-dev
       - icnsutils
       - build-essential
-      - libxkbfile-dev
       - g++-multilib
+      - libxkbfile-dev
+      - libx11-dev:i386
+      - libx11-dev
 
 cache:
   directories:
