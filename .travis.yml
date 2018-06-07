@@ -24,6 +24,7 @@ addons:
       - icnsutils
       - build-essential
       - libxkbfile-dev
+      - g++-multilib
 
 cache:
   directories:
