@@ -27,6 +27,7 @@ addons:
       - libxkbfile-dev
       - libx11-dev:i386
       - libx11-dev
+      - libxkbfile
 
 cache:
   directories:
