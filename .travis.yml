@@ -25,7 +25,6 @@ addons:
     packages:
       - libgnome-keyring-dev
       - icnsutils
-      - build-essential
       - g++-multilib
       - libxkbfile-dev
       - libx11-dev:i386
