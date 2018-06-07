@@ -56,7 +56,7 @@ before_script:
   - git lfs pull
 
 script:
-  - npm run build --ia32 --x64
+  - npm run build
 
 branches:
   only:
