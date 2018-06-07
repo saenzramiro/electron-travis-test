@@ -2,8 +2,6 @@ matrix:
   include:
     - os: osx
       osx_image: xcode9.3
-      language: node_js
-      node_js: "9"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -11,28 +9,15 @@ matrix:
     - os: linux
       sudo: required
       dist: trusty
-      language: node_js
-      node_js: "9"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
         - CXX=g++
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - libgnome-keyring-dev
-      - icnsutils
-      - g++-multilib
-      - libxkbfile-dev
-      - libx11-dev:i386
-      - libx11-dev
+language: node_js
 
-compiler:
-  - gcc
-  - clang
+node_js:
+- "9"
 
 cache:
   directories:
@@ -45,10 +30,9 @@ before_install:
       mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
       export PATH="/tmp/git-lfs:$PATH"
     fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt install libx11-dev libxext-dev libxss-dev libxkbfile-dev; fi
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
       sudo apt-add-repository -y ppa:snappy-dev/tools;
-      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
-      sudo add-apt-repository -y ppa:marutter/rrutter;
       sudo apt-get update -qq;
       sudo apt-get install -qq libxml2-dev;
       sudo apt-get install -qq libappindicator1;
@@ -73,3 +57,8 @@ script:
 branches:
   only:
   - master
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
