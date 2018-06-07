@@ -1,6 +1,3 @@
-sudo: false
-dist: trusty
-language: c
 matrix:
   include:
     - os: osx
@@ -12,6 +9,8 @@ matrix:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
         - CXX=g++
     - os: linux
+      sudo: required
+      dist: trusty
       language: node_js
       node_js: "9"
       env:
@@ -31,6 +30,10 @@ addons:
       - libxkbfile-dev
       - libx11-dev:i386
       - libx11-dev
+
+compiler:
+  - gcc
+  - clang
 
 cache:
   directories:
@@ -53,7 +56,7 @@ before_install:
       sudo apt-get install -qq rpm;
       sudo apt-get install -y -qq snappy-tools;
       sudo apt-get install -y -qq snapcraft;
-      sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils;
+      sudo apt-get install --no-install-recommends -y graphicsmagick xz-utils;
     fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
