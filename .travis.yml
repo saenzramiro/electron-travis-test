@@ -27,7 +27,6 @@ addons:
       - libxkbfile-dev
       - libx11-dev:i386
       - libx11-dev
-      - libxkbfile
 
 cache:
   directories:
@@ -48,6 +47,7 @@ before_install:
       sudo apt-get install -qq rpm;
       sudo apt-get install -y -qq snappy-tools;
       sudo apt-get install -y -qq snapcraft;
+      sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils;
     fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
