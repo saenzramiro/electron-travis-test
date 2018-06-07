@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 dist: trusty
 language: c
 matrix:
@@ -12,8 +12,12 @@ matrix:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
         - CXX=g++
     - os: linux
-      env: CC=clang CXX=clang++ npm_config_clang=1
-      compiler: clang
+      language: node_js
+      node_js: "9"
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - CXX=g++
 
 addons:
   apt:
