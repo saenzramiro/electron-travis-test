@@ -32,13 +32,10 @@ cache:
   - "$HOME/.cache"
 
 before_install:
-  - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
-  - cd desktop
   - |
     if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
       export PATH="/tmp/git-lfs:$PATH"
-      rm yarn.lock
     fi
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
       sudo apt-add-repository -y ppa:snappy-dev/tools;
@@ -49,29 +46,18 @@ before_install:
       sudo apt-get install -y -qq snappy-tools;
       sudo apt-get install -y -qq snapcraft;
     fi
+  - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
+  - cd desktop
+  - rm yarn.lock
 
 install:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-      npm install
-    fi
+  - npm install
 
 before_script:
   - git lfs pull
 
 script:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_|ENVKEY|GOOGLE_|WIN_') \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine \
-        /bin/bash -c "npm install && npm run build --linux --ia32 --x64"
-    else
-      npm run build
-    fi
+  - npm run build
 
 before_cache:
   #- rm -rf $HOME/.cache/electron-builder/wine
