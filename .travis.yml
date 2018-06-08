@@ -27,6 +27,9 @@ addons:
       - libgnome-keyring-dev
       - icnsutils
       - g++-multilib
+      - libxkbfile-dev
+      - libx11-dev:i386
+      - libx11-dev
 
 compiler:
   - gcc
@@ -44,6 +47,7 @@ before_install:
       export PATH="/tmp/git-lfs:$PATH"
     fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt install libx11-dev libxext-dev libxss-dev libxkbfile-dev; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install build-essential clang libdbus-1-dev libgtk2.0-dev libnotify-dev libgnome-keyring-dev libgconf2-dev libasound2-dev libcap-dev libcups2-dev libxtst-dev libxss1 libnss3-dev gcc-multilib g++-multilib; fi
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
       sudo apt-add-repository -y ppa:snappy-dev/tools;
       sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
@@ -67,6 +71,7 @@ before_script:
   - git lfs pull
 
 script:
+  - npm run electron-rebuild
   - npm run build
 
 branches:
