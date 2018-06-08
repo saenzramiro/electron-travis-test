@@ -13,6 +13,7 @@ matrix:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
         - CXX=g++
+        - TRAVIS=travis CXX=g++-4.8
 
 language: node_js
 
@@ -30,6 +31,9 @@ addons:
       - libxkbfile-dev
       - libx11-dev:i386
       - libx11-dev
+      - gcc-4.8
+      - g++-4.8
+      - ninja-build
 
 compiler:
   - gcc
