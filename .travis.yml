@@ -75,6 +75,7 @@ before_script:
   - git lfs pull
 
 script:
+  - ldconfig
   - npm run electron-rebuild
   - npm run build
 
