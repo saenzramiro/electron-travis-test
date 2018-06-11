@@ -3,7 +3,7 @@ matrix:
     - os: osx
       osx_image: xcode9.3
     - os: linux
-      sudo: false
+      sudo: required
       dist: trusty
 
 language: node_js
@@ -88,8 +88,7 @@ before_script:
   - git lfs pull
 
 script:
-  - npm run electron-rebuild
-  - travis_wait npm run build
+  - npm run build
 
 branches:
   only:
