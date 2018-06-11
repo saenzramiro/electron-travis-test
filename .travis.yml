@@ -15,7 +15,7 @@ env:
   global:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-    - CXX=clang++
+    - CXX=g++-4.8
     - CC=clang
     - npm_config_clang=1
 
