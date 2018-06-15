@@ -51,6 +51,7 @@ addons:
       - libnss3-dev
       - libxext-dev
       - snapd
+      - snapcraft
       - graphicsmagick
       - xz-utils
       - libc6-dev-i386
