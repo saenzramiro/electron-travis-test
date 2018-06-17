@@ -59,7 +59,6 @@ addons:
       - g++-4.8-multilib
       - linux-libc-dev:i386
       - linux-libc-dev
-      - clang-3.3
 
 cache:
   directories:
