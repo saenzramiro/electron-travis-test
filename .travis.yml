@@ -22,7 +22,7 @@ addons:
   apt:
     update: true
     sources:
-      - ubuntu-toolchain-r-test
+      - sourceline: 'ppa:ubuntu-toolchain-r/test'
       - sourceline: 'ppa:snappy-dev/tools'
       - sourceline: 'ppa:marutter/rrutter'
     packages:
