@@ -1,7 +1,7 @@
 matrix:
   include:
     - os: osx
-      osx_image: xcode10.1
+      osx_image: xcode9.3
     - os: linux
       sudo: required
       dist: xenial
@@ -16,7 +16,7 @@ env:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
     - NODE_OPTIONS=--max-old-space-size=4096
-    - CXX=clang++
+    - CXX=g++-4.8
     - CC=clang
 
 addons:
@@ -33,8 +33,8 @@ addons:
       - libx11-dev:i386
       - libx11-dev
       - libxml2-dev
-      - gcc-4.9
-      - g++-4.9
+      - gcc-4.8
+      - g++-4.8
       - ninja-build
       - rpm
       - libappindicator1
@@ -56,8 +56,8 @@ addons:
       - graphicsmagick
       - xz-utils
       - libc6-dev-i386
-      - gcc-4.9-multilib
-      - g++-4.9-multilib
+      - gcc-4.8-multilib
+      - g++-4.8-multilib
       - linux-libc-dev:i386
       - linux-libc-dev
       - libcanberra-gtk-module
