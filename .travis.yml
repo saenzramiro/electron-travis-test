@@ -79,7 +79,7 @@ before_install:
   - cd desktop
 
 install:
-  - npm install --build-from-source
+  - npm install
 
 before_script:
   - git lfs pull
