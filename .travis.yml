@@ -16,8 +16,6 @@ env:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
     - NODE_OPTIONS=--max-old-space-size=4096
-    - CXX=g++-4.8
-    - CC=clang
 
 addons:
   apt:
