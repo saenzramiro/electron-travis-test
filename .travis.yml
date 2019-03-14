@@ -78,7 +78,7 @@ before_install:
   - cd desktop
 
 install:
-  - npm install
+  - travis_wait 30 npm install
 
 before_script:
   - git lfs pull
