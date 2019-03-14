@@ -9,12 +9,13 @@ matrix:
 language: node_js
 
 node_js:
-  - "9"
+  - "10.15.3"
 
 env:
   global:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+    - NODE_OPTIONS=--max-old-space-size=4096
     - CXX=clang++
     - CC=clang
 
