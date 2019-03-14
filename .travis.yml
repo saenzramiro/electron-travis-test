@@ -56,8 +56,8 @@ addons:
       - graphicsmagick
       - xz-utils
       - libc6-dev-i386
-      - gcc-4.8-multilib
-      - g++-4.8-multilib
+      - gcc-4.9-multilib
+      - g++-4.9-multilib
       - linux-libc-dev:i386
       - linux-libc-dev
       - libcanberra-gtk-module
@@ -72,6 +72,9 @@ before_install:
     if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
       export PATH="/tmp/git-lfs:$PATH"
+      brew update
+      brew upgrade cmake
+      brew install ninja
     fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo snap install snapcraft --classic; fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
