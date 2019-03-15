@@ -9,7 +9,7 @@ matrix:
 language: node_js
 
 node_js:
-  - $NOVE_VERSION
+  - '8.11.2'
 
 env:
   global:
