@@ -85,7 +85,7 @@ before_script:
   - git lfs pull
 
 script:
-  - travis_wait 60 npm run build
+  - travis_wait 60 npm run build:win
 
 branches:
   only:
