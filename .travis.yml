@@ -22,44 +22,15 @@ addons:
     update: true
     sources:
       - sourceline: 'ppa:ubuntu-toolchain-r/test'
-      - sourceline: 'ppa:snappy-dev/tools'
-      - sourceline: 'ppa:marutter/rrutter'
     packages:
-      - libgnome-keyring-dev
-      - icnsutils
-      - libxkbfile-dev:i386
       - libxkbfile-dev
-      - libx11-dev:i386
       - libx11-dev
-      - libxml2-dev
-      - gcc-4.8
-      - g++-4.8
-      - ninja-build
       - rpm
       - libappindicator1
-      - libdbus-1-dev
-      - libgtk2.0-dev
-      - libnotify-dev
-      - libgnome-keyring-dev
-      - libgconf2-dev
-      - libasound2-dev
-      - libcap-dev
-      - libcups2-dev
-      - libxtst-dev
-      - libxss1
-      - libxss-dev
-      - libnss3-dev
-      - libxext-dev
-      - snapd
+      - libopenjp2-tools
       - snapcraft
-      - graphicsmagick
-      - xz-utils
-      - libc6-dev-i386
-      - gcc-4.8-multilib
-      - g++-4.8-multilib
-      - linux-libc-dev:i386
-      - linux-libc-dev
-      - libcanberra-gtk-module
+      - gcc-multilib
+      - g++-multilib
 
 cache:
   directories:
@@ -74,7 +45,6 @@ before_install:
       mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
       export PATH="/tmp/git-lfs:$PATH"
     fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo snap install snapcraft --classic; fi
   - git clone https://$GH_TOKEN@github.com/ramboxapp/desktop.git
   - cd desktop
 
