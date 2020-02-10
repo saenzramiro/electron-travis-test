@@ -1,9 +1,8 @@
-matrix:
+jobs:
   include:
     - os: osx
       osx_image: xcode10.1
     - os: linux
-      sudo: required
       dist: xenial
       
 language: node_js
